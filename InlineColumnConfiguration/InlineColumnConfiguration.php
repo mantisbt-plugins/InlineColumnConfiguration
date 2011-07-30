@@ -15,21 +15,41 @@
 # along with Inline column configuration plugin for MantisBT.  
 # If not, see <http://www.gnu.org/licenses/>.
 
-class InlineColumnConfigurationPlugin extends MantisPlugin
-{
-    public function register()
-    {
+class InlineColumnConfigurationPlugin extends MantisPlugin {
+    
+    public function register() {
         $this->name = plugin_lang_get("title");
         $this->description = plugin_lang_get("description");
 
         $this->version = "1.0";
         $this->requires = array(
 			"MantisCore" => "1.2.6",
+			"jQueryUI" => "1.8"
         );
 
         $this->author = "Robert Munteanu";
         $this->contact = "robert@lmn.ro";
-        $this->url = "http://lmn.ro";
+    }
+    
+    public function hooks() {
+        
+        return array (
+            'EVENT_MENU_FILTER' => 'add_configure_columns_link'
+        );
+    }
+    
+    public function add_configure_columns_link() {
+        
+        // TODO: remove OB once we have echo_link in MantisBT core
+        ob_start();
+        echo '&#160;';
+        print_link( 'account_manage_columns_page.php', plugin_lang_get( 'configure_columns' ) );
+        
+        $link = ob_get_contents();
+        
+        ob_end_clean();
+        
+        return $link;
     }
 }
 
