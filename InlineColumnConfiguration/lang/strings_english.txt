@@ -24,3 +24,4 @@ $s_plugin_InlineColumnConfiguration_view_columns_1 = 'View issues page columns';
 $s_plugin_InlineColumnConfiguration_view_columns_2 = 'Print columns';
 $s_plugin_InlineColumnConfiguration_view_columns_3 = 'CSV columns';
 $s_plugin_InlineColumnConfiguration_view_columns_4 = 'Excel columns';
+$s_plugin_InlineColumnConfiguration_submit = 'Submit';

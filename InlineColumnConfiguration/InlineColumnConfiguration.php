@@ -60,6 +60,9 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     
     public function add_columns_form() {
         
+        if  ( basename($_SERVER['SCRIPT_NAME']) != 'view_all_bug_page.php' )
+            return;
+        
         $t_user_id = auth_get_current_user_id();
         $t_project_id = helper_get_current_project();
         
@@ -69,13 +72,18 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         echo '<form id="manage-columns-form-"'. $p_target .'" method="post" action="">';
         echo '<table id="manage-view-forms" style="display: none" title="' . plugin_lang_get('configure_columns') .'">';
         echo ' <tr> ';
+        
         $this->add_columns_form_by_target(COLUMNS_TARGET_VIEW_PAGE, $t_user_id, $t_project_id);
         $this->add_columns_form_by_target(COLUMNS_TARGET_CSV_PAGE, $t_user_id, $t_project_id);
         $this->add_columns_form_by_target(COLUMNS_TARGET_PRINT_PAGE, $t_user_id, $t_project_id);
         $this->add_columns_form_by_target(COLUMNS_TARGET_EXCEL_PAGE, $t_user_id, $t_project_id);
         
         echo ' </tr>';
+        echo ' <tr><td colspan="4">';
+        echo '  <input type="submit" class="button" value="' . plugin_lang_get('submit') . '" ></input>';
+        echo ' </td></tr>';
         echo '</table>';
+        
         echo '</form>';
     }
     
