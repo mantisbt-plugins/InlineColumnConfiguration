@@ -69,8 +69,16 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         $t_all_columns = columns_get_all( $t_project_id );
         $t_view_columns = helper_get_columns_to_view( COLUMNS_TARGET_VIEW_PAGE, /* $p_viewable_only */ false );
         
-        echo '<form id="manage-columns-form-"'. $p_target .'" method="post" action="">';
-        echo '<table id="manage-view-forms" style="display: none" title="' . plugin_lang_get('configure_columns') .'">';
+        echo '<div id="manage-view-forms" style="display: none">';
+        echo '<form id="manage-columns-form" method="post" action="manage_config_columns_set.php">';
+        echo form_security_field( 'manage_config_columns_set' );
+        echo '<input type="hidden" name="project_id" value="'. $t_project_id .'" />';
+        echo '<input type="hidden" name="form_page" value="account" />';
+        echo '<input type="hidden" name="view_issues_columns" value="" />';
+        echo '<input type="hidden" name="print_issues_columns" value="" />';
+        echo '<input type="hidden" name="csv_columns" value="" />';
+        echo '<input type="hidden" name="excel_columns" value="" />';
+        echo '<table title="' . plugin_lang_get('configure_columns') .'">';
         echo ' <tr> ';
         
         $this->add_columns_form_by_target(COLUMNS_TARGET_VIEW_PAGE, $t_user_id, $t_project_id);
@@ -83,26 +91,32 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         echo '  <input type="submit" class="button" value="' . plugin_lang_get('submit') . '" ></input>';
         echo ' </td></tr>';
         echo '</table>';
-        
         echo '</form>';
+        echo '</div>';
     }
     
     private function add_columns_form_by_target ( $p_target , $p_user_id, $p_project_id ) {
 
         $t_all_columns = columns_get_all( $p_project_id );
         $t_view_columns = helper_get_columns_to_view( $p_target, /* $p_viewable_only */ false , $p_user_id);
+        $t_deselected_columns = array_diff( $t_all_columns, $t_view_columns );
         
         echo '<td width="25%">';
         
         echo '<legend>' . plugin_lang_get('view_columns_' . $p_target) . '</legend>';
-        echo '<fieldset>';
+        echo '<fieldset id="columns_'. $p_target .'">';
         echo '<ol class="sortable">';
-        foreach ( $t_all_columns as $t_column ) {
+        foreach ( $t_view_columns as $t_column ) {
             echo '<li>';
-            echo '<input type="checkbox" id="' . $t_column .'" ';
-            check_checked(in_array ( $t_column, $t_view_columns ) );
-            echo ' ></input>';
-            echo '<label for="' . $t_column .'">'. $t_column .'</label>';
+            echo '<input type="checkbox" id="'. $p_target . '_' . $t_column .'" checked="checked" />';
+            echo '<label for="' . $p_target . '_' . $t_column .'">'. $t_column .'</label>';
+            echo '</li>';
+        }
+        
+        foreach ( $t_deselected_columns as $t_column ) {
+            echo '<li>';
+            echo '<input type="checkbox" id="'. $p_target . '_' . $t_column .'" />';
+            echo '<label for="' . $p_target . '_' . $t_column .'">'. $t_column .'</label>';
             echo '</li>';
         }
         echo '</fieldset>';
