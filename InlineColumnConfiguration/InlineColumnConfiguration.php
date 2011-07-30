@@ -34,22 +34,72 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     public function hooks() {
         
         return array (
-            'EVENT_MENU_FILTER' => 'add_configure_columns_link'
+            'EVENT_MENU_FILTER' => 'add_configure_columns_link',
+        	'EVENT_LAYOUT_RESOURCES' => 'resources',
+        	'EVENT_LAYOUT_BODY_END' => 'add_columns_form'
         );
     }
+    
+    public function resources( $p_event ) {
+        return '<script type="text/javascript" src="' . plugin_file( 'inline-column-configuration.js' ) . '"></script>';
+    }    
     
     public function add_configure_columns_link() {
         
         // TODO: remove OB once we have echo_link in MantisBT core
         ob_start();
         echo '&#160;';
-        print_link( 'account_manage_columns_page.php', plugin_lang_get( 'configure_columns' ) );
+        print_link( 'account_manage_columns_page.php', plugin_lang_get( 'configure_columns' ), false, 'inline-configure-columns' );
         
         $link = ob_get_contents();
         
         ob_end_clean();
         
         return $link;
+    }
+    
+    public function add_columns_form() {
+        
+        $t_user_id = auth_get_current_user_id();
+        $t_project_id = helper_get_current_project();
+        
+        $t_all_columns = columns_get_all( $t_project_id );
+        $t_view_columns = helper_get_columns_to_view( COLUMNS_TARGET_VIEW_PAGE, /* $p_viewable_only */ false );
+        
+        echo '<form id="manage-columns-form-"'. $p_target .'" method="post" action="">';
+        echo '<table id="manage-view-forms" style="display: none" title="' . plugin_lang_get('configure_columns') .'">';
+        echo ' <tr> ';
+        $this->add_columns_form_by_target(COLUMNS_TARGET_VIEW_PAGE, $t_user_id, $t_project_id);
+        $this->add_columns_form_by_target(COLUMNS_TARGET_CSV_PAGE, $t_user_id, $t_project_id);
+        $this->add_columns_form_by_target(COLUMNS_TARGET_PRINT_PAGE, $t_user_id, $t_project_id);
+        $this->add_columns_form_by_target(COLUMNS_TARGET_EXCEL_PAGE, $t_user_id, $t_project_id);
+        
+        echo ' </tr>';
+        echo '</table>';
+        echo '</form>';
+    }
+    
+    private function add_columns_form_by_target ( $p_target , $p_user_id, $p_project_id ) {
+
+        $t_all_columns = columns_get_all( $p_project_id );
+        $t_view_columns = helper_get_columns_to_view( $p_target, /* $p_viewable_only */ false , $p_user_id);
+        
+        echo '<td width="25%">';
+        
+        echo '<legend>' . plugin_lang_get('view_columns_' . $p_target) . '</legend>';
+        echo '<fieldset>';
+        echo '<ol class="sortable">';
+        foreach ( $t_all_columns as $t_column ) {
+            echo '<li>';
+            echo '<input type="checkbox" id="' . $t_column .'" ';
+            check_checked(in_array ( $t_column, $t_view_columns ) );
+            echo ' ></input>';
+            echo '<label for="' . $t_column .'">'. $t_column .'</label>';
+            echo '</li>';
+        }
+        echo '</fieldset>';
+        echo '</td>';
+        
     }
 }
 
