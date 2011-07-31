@@ -128,6 +128,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
             echo '<label for="' . $p_target . '_' . $t_column .'">'. $t_column .'</label>';
             echo '</li>';
         }
+        echo '</ol>';
         echo '</fieldset>';
         echo '</td>';
         
