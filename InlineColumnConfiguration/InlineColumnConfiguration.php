@@ -46,6 +46,10 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     
     public function add_configure_columns_link() {
         
+        // ALL_PROJECTS NOT SUPPORTED
+        if ( helper_get_current_project() === ALL_PROJECTS )
+            return;
+        
         // TODO: remove OB once we have echo_link in MantisBT core
         ob_start();
         echo '&#160;';
@@ -65,6 +69,11 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         
         $t_user_id = auth_get_current_user_id();
         $t_project_id = helper_get_current_project();
+        
+        // ALL_PROJECTS NOT SUPPORTED
+        if ( $t_project_id == ALL_PROJECTS )
+            return;
+        
         
         $t_all_columns = columns_get_all( $t_project_id );
         $t_view_columns = helper_get_columns_to_view( COLUMNS_TARGET_VIEW_PAGE, /* $p_viewable_only */ false );
