@@ -83,6 +83,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         echo '<form id="manage-columns-form" method="post" action="manage_config_columns_set.php">';
         echo form_security_field( 'manage_config_columns_set' );
         echo '<input type="hidden" name="project_id" value="'. $t_project_id .'" />';
+        echo '<input type="hidden" name="update_columns_for_current_project" value="true" />';        
         echo '<input type="hidden" name="form_page" value="account" />';
         echo '<input type="hidden" name="view_issues_columns" value="" />';
         echo '<input type="hidden" name="print_issues_columns" value="" />';
