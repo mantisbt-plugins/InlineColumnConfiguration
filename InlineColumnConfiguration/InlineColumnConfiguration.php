@@ -109,6 +109,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     private function add_columns_form_by_target ( $p_target , $p_user_id, $p_project_id ) {
 
         $t_all_columns = columns_get_all( $p_project_id );
+        $t_all_columns = array_map('strtolower', $t_all_columns);
         $t_view_columns = helper_get_columns_to_view( $p_target, /* $p_viewable_only */ false , $p_user_id);
         $t_deselected_columns = array_diff( $t_all_columns, $t_view_columns );
         
