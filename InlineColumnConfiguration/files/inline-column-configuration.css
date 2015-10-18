@@ -1,0 +1,38 @@
+
+div.dialog {
+    display: none;
+}
+
+div.columns_form_inner {
+    display: block;
+    overflow: auto;
+    max-height: 65vh;
+}
+
+div.columns_form_container {
+    display: block;
+}
+
+div.columns_form_container fieldset > ol > li:nth-child(odd) {
+    background-color: #e8e8e8;
+}
+
+div.columns_form_container fieldset > ol > li:nth-child(even) {
+    background-color: #d8d8d8;
+}
+
+div.columns_form_actions {
+    overflow: hidden;
+    display: block;
+    height: 3em;
+    font-size: normal;
+    font-weight: bold;
+}
+
+div.action_div {
+    display: inline-block;
+}
+
+span.result_ok { color: green; }
+
+span.result_error { color: red; }
