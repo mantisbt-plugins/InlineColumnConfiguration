@@ -18,10 +18,10 @@
 
 $s_plugin_InlineColumnConfiguration_ = '';
 $s_plugin_InlineColumnConfiguration_title = 'Inline column configuration';
-$s_plugin_InlineColumnConfiguration_description = 'Easy configuration of the available columns in the view issues page';
-$s_plugin_InlineColumnConfiguration_configure_columns = 'Configure columns';
-$s_plugin_InlineColumnConfiguration_button_update = 'Update configuration';
-$s_plugin_InlineColumnConfiguration_dialog_text = 'Select and sort displayed columns.';
-$s_plugin_InlineColumnConfiguration_result_text_ok = 'Configuration succesfully saved';
-$s_plugin_InlineColumnConfiguration_result_text_reload = 'Reload the page to apply new column layout';
-$s_plugin_InlineColumnConfiguration_please_wait = 'Please wait while loading contents...';
+$s_plugin_InlineColumnConfiguration_description = 'Configuración sencilla de las columnas en la lista de incidencias';
+$s_plugin_InlineColumnConfiguration_configure_columns = 'Configurar columnas';
+$s_plugin_InlineColumnConfiguration_button_update = 'Actualizar configuración';
+$s_plugin_InlineColumnConfiguration_dialog_text = 'Marque y ordene las columnas que serán msotradas.';
+$s_plugin_InlineColumnConfiguration_result_text_ok = 'La configuración se ha guardado correctamente';
+$s_plugin_InlineColumnConfiguration_result_text_reload = 'Vuelva a cargar la página para visualizar la nueva disposición';
+$s_plugin_InlineColumnConfiguration_please_wait = 'Por favor espere mientras se carga el contenido...';
