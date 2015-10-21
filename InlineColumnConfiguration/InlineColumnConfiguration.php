@@ -23,24 +23,20 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 
         $this->version = "1.0";
 
-		$t_version_core = substr(
-				MANTIS_VERSION,
-				0,
-				strpos( MANTIS_VERSION, '.', strpos( MANTIS_VERSION, '.' ) + 1 )
-			);
-		if( $t_version_core==='1.3' ) {
-			$this->requires = array(
-				"MantisCore" => "1.3"
-			);
-		}
-		else {
+		if( version_compare( MANTIS_VERSION, '1.3', '<') ) {
+			# this is version 1.2.x
 			$this->requires = array(
 				"MantisCore" => "1.2.6",
 				"jQueryUI" => "1.8"
 			);
+		} else {
+			# this is version 1.3.x
+			$this->requires = array(
+				"MantisCore" => "1.3"
+			);
 		}
 
-        $this->author = "Robert Munteanu";
+		$this->author = "Robert Munteanu";
         $this->contact = "robert@lmn.ro";
         $this->url ="http://www.mantisbt.org/wiki/doku.php/mantisbt:inlinecolumnconfiguration";
     }
