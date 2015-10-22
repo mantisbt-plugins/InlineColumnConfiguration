@@ -22,12 +22,21 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         $this->description = plugin_lang_get("description");
 
         $this->version = "1.0";
-        $this->requires = array(
-			"MantisCore" => "1.2.6",
-			"jQueryUI" => "1.8"
-        );
 
-        $this->author = "Robert Munteanu";
+		if( version_compare( MANTIS_VERSION, '1.3', '<') ) {
+			# this is version 1.2.x
+			$this->requires = array(
+				"MantisCore" => "1.2.6",
+				"jQueryUI" => "1.8"
+			);
+		} else {
+			# this is version 1.3.x
+			$this->requires = array(
+				"MantisCore" => "1.3"
+			);
+		}
+
+		$this->author = "Robert Munteanu";
         $this->contact = "robert@lmn.ro";
         $this->url ="http://www.mantisbt.org/wiki/doku.php/mantisbt:inlinecolumnconfiguration";
     }
@@ -79,7 +88,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         $t_all_columns = columns_get_all( $t_project_id );
         $t_view_columns = helper_get_columns_to_view( COLUMNS_TARGET_VIEW_PAGE, /* $p_viewable_only */ false );
         
-        echo '<div id="manage-view-forms" style="display: none" title="' . plugin_lang_get('configure_columns') .'">';
+        echo '<div id="manage-view-forms" class="hidden" title="' . plugin_lang_get('configure_columns') .'">';
         echo '<form id="manage-columns-form" method="post" action="manage_config_columns_set.php">';
         echo form_security_field( 'manage_config_columns_set' );
         echo '<input type="hidden" name="project_id" value="'. $t_project_id .'" />';
@@ -138,4 +147,3 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     }
 }
 
-?>
