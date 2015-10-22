@@ -4,7 +4,12 @@ $t_option = null;
 $ok = true;
 $error_msg = '';
 
-if( ! @form_security_validate('ajax_form')){
+if( current_user_is_protected() ){
+	$ok = false;
+	$error_msg = 'User is protected, not allowed to change preferences';
+}
+
+if( $ok && !@form_security_validate('ajax_form')){
 	$ok = false;
 	$error_msg = 'Form has expired, reload';
 }
