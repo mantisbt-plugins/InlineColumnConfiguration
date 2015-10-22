@@ -45,8 +45,9 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 		);
     }
 
+	#Check for conditions when this plugin is allowed to hook
 	function check_page(){
-		return in_array( basename( $_SERVER['SCRIPT_NAME'] ), $this->scripts);
+		return !current_user_is_protected() &&  in_array( basename( $_SERVER['SCRIPT_NAME'] ), $this->scripts);
 	}	
 	
     public function hooks() {
