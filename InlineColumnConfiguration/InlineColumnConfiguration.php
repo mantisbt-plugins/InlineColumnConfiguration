@@ -88,7 +88,11 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         $t_all_columns = columns_get_all( $t_project_id );
         $t_view_columns = helper_get_columns_to_view( COLUMNS_TARGET_VIEW_PAGE, /* $p_viewable_only */ false );
         
-        echo '<div id="manage-view-forms" class="hidden" title="' . plugin_lang_get('configure_columns') .'">';
+		echo '<div id="manage-view-forms" class="hidden" title="' .
+			plugin_lang_get('configure_columns') . ' ' .
+			string_html_specialchars(
+				sprintf( plugin_lang_get('project'), project_get_name( $t_project_id ) )
+			) . '">';
         echo '<form id="manage-columns-form" method="post" action="manage_config_columns_set.php">';
         echo form_security_field( 'manage_config_columns_set' );
         echo '<input type="hidden" name="project_id" value="'. $t_project_id .'" />';

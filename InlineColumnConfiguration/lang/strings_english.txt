@@ -20,6 +20,7 @@ $s_plugin_InlineColumnConfiguration_ = '';
 $s_plugin_InlineColumnConfiguration_title = 'Inline column configuration';
 $s_plugin_InlineColumnConfiguration_description = 'Easy configuration of the available columns in the view issues page';
 $s_plugin_InlineColumnConfiguration_configure_columns = 'Configure columns';
+$s_plugin_InlineColumnConfiguration_project = 'for project "%1$s"';
 $s_plugin_InlineColumnConfiguration_view_columns_1 = 'View issues page columns';
 $s_plugin_InlineColumnConfiguration_view_columns_2 = 'Print columns';
 $s_plugin_InlineColumnConfiguration_view_columns_3 = 'CSV columns';
