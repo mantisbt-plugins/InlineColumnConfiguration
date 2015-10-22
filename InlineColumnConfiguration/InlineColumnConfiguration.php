@@ -57,13 +57,13 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     public function add_configure_columns_link() {
         
         // ALL_PROJECTS NOT SUPPORTED
-        if ( helper_get_current_project() === ALL_PROJECTS )
-            return;
-        
+		$t_url = helper_get_current_project() === ALL_PROJECTS
+			? null
+			: 'account_manage_columns_page.php';
+
         // TODO: remove OB once we have echo_link in MantisBT core
         ob_start();
-        echo '&#160;';
-        print_link( 'account_manage_columns_page.php', plugin_lang_get( 'configure_columns' ), false, 'inline-configure-columns' );
+        print_link( $t_url, plugin_lang_get( 'configure_columns' ), false, 'inline-configure-columns' );
         
         $link = ob_get_contents();
         
