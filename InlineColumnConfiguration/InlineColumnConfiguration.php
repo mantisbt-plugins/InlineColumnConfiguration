@@ -78,8 +78,9 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     }
     
     public function add_columns_dialog() {
+		$t_title = lang_get( 'manage_columns_config' ) . ' (' . lang_get( 'email_project' ) . ': ' . project_get_name( helper_get_current_project() ) . ')';
 		?>
-		<div id="column_config_dialog" class="dialog">
+		<div id="column_config_dialog" class="dialog" title="<?php echo $t_title ?>">
 		<?php echo plugin_lang_get( 'please_wait' ) ?>
 		</div>		
         <?php 		

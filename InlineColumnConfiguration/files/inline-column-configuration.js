@@ -30,7 +30,6 @@ jQuery(document).ready(function($) {
 			modal: true,
 			width: "auto",
 			height: "auto",
-			title: $("#dialog_title").hide().text(),
 			});
 	};
 	
