@@ -75,10 +75,10 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     
     public function add_configure_columns_link() {
 		$t_token = form_security_token( 'ajax_form' );
-		$t_link = '<a href="account_manage_columns_page.php"'
-				. ' data-remote="' . plugin_page( 'ajax_form' ) . '&ajax_form_token=' . $t_token . '"'
-				. ' class="columns_form_trigger">' . plugin_lang_get( 'configure_columns' )
-				. '</a>';		
+		$t_url = plugin_page( 'ajax_form' ) . '&project_id=' . helper_get_current_project() . '&ajax_form_token=' . $t_token;
+		$t_link = '<a href="account_manage_columns_page.php" data-remote="' . $t_url . '" class="columns_form_trigger">'
+				. plugin_lang_get( 'configure_columns' )
+				. '</a>';
         return $t_link;
     }
     
