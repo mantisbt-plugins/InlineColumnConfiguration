@@ -4,27 +4,27 @@ $t_option = null;
 $ok = true;
 $error_msg = '';
 
-if( current_user_is_protected() ){
+if( current_user_is_protected() ) {
 	$ok = false;
 	$error_msg = 'User is protected, not allowed to change preferences';
 }
 
-if( $ok && !@form_security_validate('ajax_form')){
+if( $ok && !@form_security_validate( 'ajax_form' ) ) {
 	$ok = false;
 	$error_msg = 'Form has expired, reload';
 }
 
-$f_project_id = @gpc_get('project_id', null);
-$f_target = @gpc_get( 'target', null);
+$f_project_id = @gpc_get( 'project_id', null );
+$f_target = @gpc_get( 'target', null );
 $f_columns = @gpc_get_string_array( 'columns', array() );
 
 
-if( $ok && (null === $f_project_id || null === $f_target ) ){
+if( $ok && ( null === $f_project_id || null === $f_target ) ) {
 		$ok = false;
 	$error_msg = 'Missing parameters';
 }
 
-switch($f_target){
+switch( $f_target ) {
 	case COLUMNS_TARGET_VIEW_PAGE:
 		$t_option = 'view_issues_page_columns';
 		break;
@@ -40,6 +40,7 @@ switch($f_target){
 	default:
 		$ok = false;
 		$error_msg = 'Column type is not valid';
+		break;
 }
 
 
@@ -63,11 +64,11 @@ if( $ok ) {
 }
 
 
-if( $ok ){
+if( $ok ) {
 	echo '<span class="result_ok">';
-	echo plugin_lang_get('result_text_ok');
+	echo plugin_lang_get( 'result_text_ok' );
 	if( COLUMNS_TARGET_VIEW_PAGE == $f_target ){
-		echo '<br />' . plugin_lang_get('result_text_reload');
+		echo '<br />' . plugin_lang_get( 'result_text_reload' );
 	}
 	echo '</span>';
 }
