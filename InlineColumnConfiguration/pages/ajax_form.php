@@ -18,7 +18,7 @@ function print_columns_inputs_by_target ( $p_target ) {
 		<fieldset>
 			<?php echo form_security_field( 'ajax_form', $f_token ) ?>
 			<input type="hidden" name="target" value="<?php echo $p_target ?>" />
-			<input type="hidden" name="project_id" value="<?php helper_get_current_project() ?>" />
+			<input type="hidden" name="project_id" value="<?php echo $f_project_id ?>" />
 			<ol class="sortable">
 				<?php foreach( $t_view_columns as $t_column ) { ?>
 				<li>
@@ -42,11 +42,16 @@ function print_columns_inputs_by_target ( $p_target ) {
 if( !@form_security_validate( 'ajax_form' ) ) {
 	exit;
 }
+$f_project_id = gpc_get( 'project_id', null );
+if( null === $f_project_id ) {
+	header( ' ', true, 400 );
+	exit;
+}
 
 ?>
 <div class="jqui_tabs">
 	<div id="dialog_title">
-		<?php echo lang_get( 'manage_columns_config' ) . ' (' . lang_get( 'email_project' ) . ': ' . project_get_name( helper_get_current_project() ) . ')' ?>
+		<?php echo lang_get( 'manage_columns_config' ) . ' (' . lang_get( 'email_project' ) . ': ' . project_get_name( $f_project_id ) . ')' ?>
 	</div>
 	<ul class="tabs">
 		<li><a href='#tab1'><?php echo lang_get( 'view_issues_columns_title' ) ?></a></li>

@@ -13,15 +13,17 @@ jQuery(document).ready(function($) {
 		var post_data = $(this.form).serialize();
 		$.post(post_url, post_data)
 			.done( function(data){ write_result(data,result_div) } )
-			.fail( function(){ write_result('ERROR while posting form',result_div) } )
-			;
+			.fail( function(){ write_result('ERROR while posting form',result_div) } );
 			
 	};
 
-	var callback_dialog_on_load = function () {
+	var callback_dialog_on_load = function (response, status, xhr) {
+		if ( status == "error" ) {
+			$("#column_config_dialog").html('<span class="error-msg">' + status + ': ' + xhr.status + " " + xhr.statusText + '</span>');
+		}
 		$(".jqui_tabs").tabs();
 		$(".sortable").sortable({
-			axis: "y",			
+			axis: "y",
 			});
 		$(".button_submit").click(callback_button_submit);
 		$("#column_config_dialog").dialog({
@@ -30,7 +32,6 @@ jQuery(document).ready(function($) {
 			height: "auto",
 			title: $("#dialog_title").hide().text(),
 			});
-
 	};
 	
 	var click_open_dialog = function(ev){
