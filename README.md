@@ -1,6 +1,7 @@
 # Inline Column Configuration plugin for MantisBT
 
-Copyright (c) 2011  Robert Munteanu - robert@lmn.ro
+Copyright (c) 2011  Robert Munteanu - robert@lmn.ro  
+Copyright (c) 2015  Carlos Proensa
 
 Released under the [GNU GPL v2 licence](http://opensource.org/licenses/GPL-2.0)
 
