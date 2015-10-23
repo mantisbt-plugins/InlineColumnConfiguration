@@ -50,9 +50,6 @@ if( null === $f_project_id ) {
 
 ?>
 <div class="jqui_tabs">
-	<div id="dialog_title">
-		<?php echo lang_get( 'manage_columns_config' ) . ' (' . lang_get( 'email_project' ) . ': ' . project_get_name( $f_project_id ) . ')' ?>
-	</div>
 	<ul class="tabs">
 		<li><a href='#tab1'><?php echo lang_get( 'view_issues_columns_title' ) ?></a></li>
 		<li><a href='#tab2'><?php echo lang_get( 'print_issues_columns_title' ) ?></a></li>
