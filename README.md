@@ -25,7 +25,8 @@ The plugin requires
 
 ## Installation
 
-1. Download or clone the [plugin's code](https://github.com/mantisbt-plugins/Inline-column-configuration).
+1. Download the plugin's [latest release](https://github.com/mantisbt-plugins/Inline-column-configuration/releases/latest) 
+   or clone the [source code](https://github.com/mantisbt-plugins/Inline-column-configuration).
 2. Copy or link the plugin (the `InlineColumnConfiguration/` directory) into your Mantis
    installation's `plugins/` directory.
 3. While logged into your Mantis installation as an administrator, go to
