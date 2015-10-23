@@ -41,7 +41,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 			);
 		}
 
-        $this->author = "Robert Munteanu";
+        $this->author = "Robert Munteanu, Carlos Proensa";
         $this->contact = "robert@lmn.ro";
         $this->url ="http://www.mantisbt.org/wiki/doku.php/mantisbt:inlinecolumnconfiguration";
 		
