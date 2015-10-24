@@ -34,11 +34,6 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 			$this->requires = array(
 				"MantisCore" => "1.3"
 			);
-		} else {
-			# this is version 1.3.x
-			$this->requires = array(
-				"MantisCore" => "1.3"
-			);
 		}
 
         $this->author = "Robert Munteanu, Carlos Proensa";
