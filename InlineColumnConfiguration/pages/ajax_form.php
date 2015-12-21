@@ -1,7 +1,10 @@
 <?php
 
 function print_columns_inputs_by_target ( $p_target ) {
-	$t_all_columns = columns_get_all();
+	global $g_project_override;
+	$t_project_id = $g_project_override;
+
+	$t_all_columns = columns_get_all( $t_project_id );
 	$t_view_columns = helper_get_columns_to_view( $p_target, /* $p_viewable_only */ false);
 	$t_deselected_columns = array_diff( $t_all_columns, $t_view_columns );
 	$f_token = gpc_get('ajax_form_token');
@@ -18,7 +21,7 @@ function print_columns_inputs_by_target ( $p_target ) {
 		<fieldset>
 			<?php echo form_security_field( 'ajax_form', $f_token ) ?>
 			<input type="hidden" name="target" value="<?php echo $p_target ?>" />
-			<input type="hidden" name="project_id" value="<?php echo $f_project_id ?>" />
+			<input type="hidden" name="project_id" value="<?php echo $t_project_id ?>" />
 			<ol class="sortable">
 				<?php foreach( $t_view_columns as $t_column ) { ?>
 				<li>
@@ -47,6 +50,7 @@ if( null === $f_project_id ) {
 	header( ' ', true, 400 );
 	exit;
 }
+$g_project_override = $f_project_id;
 
 ?>
 <div class="jqui_tabs">
