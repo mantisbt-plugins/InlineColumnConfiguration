@@ -47,28 +47,29 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 
 	#Check for conditions when this plugin is allowed to hook
 	function check_page() {
-		return !current_user_is_protected() &&  in_array( basename( $_SERVER['SCRIPT_NAME'] ), $this->scripts );
+		return auth_is_user_authenticated() && !current_user_is_protected() &&  in_array( basename( $_SERVER['SCRIPT_NAME'] ), $this->scripts );
 	}	
 	
     public function hooks() {
-        $h = array();
-		if( $this->check_page() ) {
-			$h = array(
-				'EVENT_MENU_FILTER' => 'add_configure_columns_link',
-				'EVENT_LAYOUT_RESOURCES' => 'resources',
-				'EVENT_LAYOUT_BODY_END' => 'add_columns_dialog'
-			);
-		}
+		$h = array(
+			'EVENT_MENU_FILTER' => 'add_configure_columns_link',
+			'EVENT_LAYOUT_RESOURCES' => 'resources',
+			'EVENT_LAYOUT_BODY_END' => 'add_columns_dialog'
+		);
 		return $h;
     }
     
     public function resources( $p_event ) {
-        return '<script type="text/javascript" src="' . plugin_file( 'inline-column-configuration.js' ) . '"></script>'
-			 . '<link rel="stylesheet" type="text/css" href="'. plugin_file( 'inline-column-configuration.css' ) .'"/>';
-		
+		if( $this->check_page() ) {
+			return '<script type="text/javascript" src="' . plugin_file( 'inline-column-configuration.js' ) . '"></script>'
+				 . '<link rel="stylesheet" type="text/css" href="'. plugin_file( 'inline-column-configuration.css' ) .'"/>';
+		}
     }    
     
     public function add_configure_columns_link() {
+		if( !$this->check_page() ) {
+			return;
+		}
 		$t_token = form_security_token( 'ajax_form' );
 		$t_url = plugin_page( 'ajax_form' ) . '&project_id=' . helper_get_current_project() . '&ajax_form_token=' . $t_token;
 		$t_link = '<a href="account_manage_columns_page.php" data-remote="' . $t_url . '" class="columns_form_trigger">'
@@ -78,6 +79,9 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
     }
     
     public function add_columns_dialog() {
+		if( !$this->check_page() ) {
+			return;
+		}
 		$t_title = lang_get( 'manage_columns_config' ) . ' (' . lang_get( 'email_project' ) . ': ' . project_get_name( helper_get_current_project() ) . ')';
 		?>
 		<div id="column_config_dialog" class="dialog" title="<?php echo $t_title ?>">
