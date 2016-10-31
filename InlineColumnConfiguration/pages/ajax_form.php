@@ -4,9 +4,30 @@ function print_columns_inputs_by_target ( $p_target ) {
 	global $g_project_override;
 	$t_project_id = $g_project_override;
 
-	$t_all_columns = columns_get_all( $t_project_id );
+	# Instead of columns_get_all(), get separately, to have the column groups ordered
+	# $t_all_columns = columns_get_all( $t_project_id );
+
+	$t_columns_std = columns_get_standard();
+
+	$t_columns_plugin = array_keys( columns_get_plugin_columns() );
+	sort( $t_columns_plugin );
+
+	$t_columns_cf = array();
+	$t_related_custom_field_ids = custom_field_get_linked_ids( $t_project_id );
+	foreach( $t_related_custom_field_ids as $t_id ) {
+		if( !custom_field_has_read_access_by_project_id( $t_id, $t_project_id ) ) {
+			continue;
+		}
+		$t_def = custom_field_get_definition( $t_id );
+		$t_columns_cf[] = 'custom_' . $t_def['name'];
+	}
+	sort( $t_columns_cf  );
+
+	$t_all_columns = array_merge( $t_columns_std, $t_columns_plugin, $t_columns_cf );
+
 	$t_view_columns = helper_get_columns_to_view( $p_target, /* $p_viewable_only */ false);
 	$t_deselected_columns = array_diff( $t_all_columns, $t_view_columns );
+
 	$f_token = gpc_get('ajax_form_token');
 	?>
 	<form method="post" action="<?php echo plugin_page( 'ajax_form_update' ) ?>">
