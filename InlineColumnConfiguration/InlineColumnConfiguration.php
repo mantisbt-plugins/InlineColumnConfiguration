@@ -70,7 +70,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 		}
 		$t_token = form_security_token( 'ajax_form' );
 		$t_url = plugin_page( 'ajax_form' ) . '&project_id=' . helper_get_current_project() . '&ajax_form_token=' . $t_token;
-		$t_link = '<a href="account_manage_columns_page.php" data-remote="' . $t_url . '" class="columns_form_trigger">'
+		$t_link = '<a href="account_manage_columns_page.php" data-remote="' . $t_url . '" class="columns_form_trigger btn btn-sm btn-primary btn-white btn-round">'
 				. plugin_lang_get( 'configure_columns' )
 				. '</a>';
         return $t_link;
