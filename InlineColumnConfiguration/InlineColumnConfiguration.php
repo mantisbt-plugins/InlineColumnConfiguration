@@ -23,16 +23,14 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 
         $this->version = "2.0";
 
-		if( version_compare( MANTIS_VERSION, '1.3', '<') ) {
-			# this is version 1.2.x
+		if( version_compare( MANTIS_VERSION, '2.2', '>=') ) {
 			$this->requires = array(
-				"MantisCore" => "1.2.6",
+				"MantisCore" => "2.2",
 				"jQueryUI" => "1.8"
 			);
 		} else {
-			# this is version 1.3.x
 			$this->requires = array(
-				"MantisCore" => "1.3"
+				"MantisCore" => "1.3, <2.2"
 			);
 		}
 
