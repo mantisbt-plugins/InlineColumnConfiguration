@@ -21,7 +21,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         $this->name = plugin_lang_get("title");
         $this->description = plugin_lang_get("description");
 
-        $this->version = "1.1";
+        $this->version = "1.2";
 
 		if( version_compare( MANTIS_VERSION, '1.3', '<') ) {
 			# this is version 1.2.x
@@ -32,9 +32,10 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 		} else {
 			# this is version 1.3.x
 			$this->requires = array(
-				"MantisCore" => "1.3"
+				"MantisCore" => "1.3, < 3.0"
 			);
-		}
+		};
+	
 
         $this->author = "Robert Munteanu";
         $this->contact = "robert@lmn.ro";
@@ -59,17 +60,25 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         // ALL_PROJECTS NOT SUPPORTED
 		$t_url = helper_get_current_project() === ALL_PROJECTS
 			? null
-			: 'account_manage_columns_page.php';
+			: 'account_manage_columns_page.php' . '#inline-column-configuration';
 
         // TODO: remove OB once we have echo_link in MantisBT core
         ob_start();
-        print_link( $t_url, plugin_lang_get( 'configure_columns' ), false, 'inline-configure-columns' );
+		$check_vertion_new = version_compare( MANTIS_VERSION, '2.0', '<');
+        if( $check_vertion_new ) {
+			print_link( $t_url, plugin_lang_get( 'configure_columns' ), false, 'inline-configure-columns' );
+		} else {
+			print_link_button( $t_url, plugin_lang_get( 'configure_columns' ), 'btn btn-sm btn-primary btn-white btn-round', false );
+		};
         
         $link = ob_get_contents();
         
         ob_end_clean();
-        
-        return $link;
+        if ( $check_vertion_new ) {
+			return array( $link, );
+		} else {
+			return $link;
+		}
     }
     
     public function add_columns_form() {
@@ -103,7 +112,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
         echo '<input type="hidden" name="csv_columns" value="" />';
         echo '<input type="hidden" name="excel_columns" value="" />';
         echo '<table>';
-        echo ' <tr> ';
+        echo ' <tr valign="top"> ';
         
         $this->add_columns_form_by_target(COLUMNS_TARGET_VIEW_PAGE, $t_user_id, $t_project_id);
         $this->add_columns_form_by_target(COLUMNS_TARGET_CSV_PAGE, $t_user_id, $t_project_id);
