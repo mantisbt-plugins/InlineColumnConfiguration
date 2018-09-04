@@ -1,0 +1,28 @@
+<?php
+
+# Copyright (c) 2011 Robert Munteanu (robert@lmn.ro)
+
+# Inline column configuration plugin for MantisBT is free software: 
+# you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, 
+# either version 2 of the License, or (at your option) any later version.
+#
+# Inline column configuration plugin for MantisBT is distributed in the hope 
+# that it will be useful, but WITHOUT ANY WARRANTY; without even the 
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Inline column configuration plugin for MantisBT.  
+# If not, see <http://www.gnu.org/licenses/>.
+
+$s_plugin_InlineColumnConfiguration_ = '';
+$s_plugin_InlineColumnConfiguration_title = 'Настройка отображения полей';
+$s_plugin_InlineColumnConfiguration_description = 'Настройка доступных столбцов на странице списка запросов и в отчетах';
+$s_plugin_InlineColumnConfiguration_configure_columns = 'Настроить поля';
+$s_plugin_InlineColumnConfiguration_project = 'для проекта "%1$s"';
+$s_plugin_InlineColumnConfiguration_view_columns_1 = 'Список запросов';
+$s_plugin_InlineColumnConfiguration_view_columns_2 = 'Печать отчета';
+$s_plugin_InlineColumnConfiguration_view_columns_3 = 'CSV';
+$s_plugin_InlineColumnConfiguration_view_columns_4 = 'Excel';
+$s_plugin_InlineColumnConfiguration_submit = 'Записать';
