@@ -14,8 +14,9 @@ jQuery(document).ready(function($) {
 		
 	}
 	
-	$('.inline-configure-columns').click(function(e) {
+	$('div').on('click', 'a[href*="#inline-column-configuration"]', function(e) {
 		e.preventDefault();
+		$('#manage-view-forms').attr({"class":"nohidden"});
 		$('#manage-view-forms').dialog({ width: 'auto' });
 		$('.sortable').sortable().disableSelection();
 	});
