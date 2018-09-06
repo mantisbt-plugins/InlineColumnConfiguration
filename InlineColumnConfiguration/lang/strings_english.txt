@@ -16,7 +16,6 @@
 # along with Inline column configuration plugin for MantisBT.  
 # If not, see <http://www.gnu.org/licenses/>.
 
-$s_plugin_InlineColumnConfiguration_ = '';
 $s_plugin_InlineColumnConfiguration_title = 'Inline column configuration';
 $s_plugin_InlineColumnConfiguration_description = 'Easy configuration of the available columns in the view issues page';
 $s_plugin_InlineColumnConfiguration_configure_columns = 'Configure columns';
