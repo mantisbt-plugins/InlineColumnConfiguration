@@ -8,6 +8,8 @@ Released under the [GNU GPL v2 licence](http://opensource.org/licenses/GPL-2.0)
 For further details, please refer to the [plugin's page](https://www.mantisbt.org/wiki/doku.php/mantisbt:inlinecolumnconfiguration)
 in the MantisBT wiki.
 
+See [Changelog](https://github.com/mantisbt-plugins/Inline-column-configuration/blob/master/CHANGELOG.md).
+
 
 ## Description
 
