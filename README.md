@@ -22,9 +22,12 @@ page in user preferences.
 
 The plugin requires 
 
-  * [MantisBT](http://mantisbt.org/) version 1.2.6 or higher
+  * [MantisBT](http://mantisbt.org/) version 2.2 or higher
   * [jQueryUI plugin](https://github.com/mantisbt-plugins/jQuery-UI) 
-    version 1.8 or higher (needed for MantisBT 1.2.x only)
+    version 1.8 or higher
+
+If you are running MantisBT 1.x, please use 
+[Version 1.2.0](https://github.com/mantisbt-plugins/Inline-column-configuration/tree/v1.2.0).
 
 
 ## Installation

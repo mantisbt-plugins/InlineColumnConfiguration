@@ -23,16 +23,10 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 
 		$this->version = "1.2.0";
 
-		if( version_compare( MANTIS_VERSION, '2.2', '>=') ) {
-			$this->requires = array(
-				"MantisCore" => "2.2",
-				"jQueryUI" => "1.8"
-			);
-		} else {
-			$this->requires = array(
-				"MantisCore" => "1.3, <2.2"
-			);
-		}
+		$this->requires = array(
+			"MantisCore" => "2.2",
+			"jQueryUI" => "1.8"
+		);
 
 		$this->author = "Robert Munteanu, Carlos Proensa";
 		$this->contact = "robert@lmn.ro";
