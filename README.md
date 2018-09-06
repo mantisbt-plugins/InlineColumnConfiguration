@@ -12,7 +12,8 @@ in the MantisBT wiki.
 ## Description
 
 The InlineColumnConfiguration allows you to configure the column preferences 
-inline, in the view bugs page.
+inline, in the view bugs page, instead of going through the _Manage Columns_
+page in user preferences.
 
 
 ## Requirements
@@ -40,12 +41,9 @@ The plugin requires
 
 The plugin adds a *Configure columns* menu item to the View issues page.
 
-When clicked a configuration page is opened inline. Fields may be dragged and 
-dropped to control the order in which they are displayed. 
-
-**Note**: the plugin currently only supports inline configuration for 
-individual projects. When the current project is *All Projects*, the *Configure 
-columns* link is disabled. 
+When clicked, a configuration pop-up dialog opens, allowing users to select
+which fields to display for _View_, _Print_, _CSV_ and _Excel_ columns, as well
+as drag and drop them to control the order in which they are displayed.
 
 
 ## Support
