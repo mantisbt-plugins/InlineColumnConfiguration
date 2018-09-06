@@ -16,12 +16,12 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 class InlineColumnConfigurationPlugin extends MantisPlugin {
-    
-    public function register() {
-        $this->name = plugin_lang_get("title");
-        $this->description = plugin_lang_get("description");
 
-        $this->version = "1.1";
+	public function register() {
+		$this->name = plugin_lang_get("title");
+		$this->description = plugin_lang_get("description");
+
+		$this->version = "1.1";
 
 		if( version_compare( MANTIS_VERSION, '1.3', '<') ) {
 			# this is version 1.2.x
@@ -36,37 +36,37 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 			);
 		}
 
-        $this->author = "Robert Munteanu, Carlos Proensa";
-        $this->contact = "robert@lmn.ro";
-        $this->url ="http://www.mantisbt.org/wiki/doku.php/mantisbt:inlinecolumnconfiguration";
+		$this->author = "Robert Munteanu, Carlos Proensa";
+		$this->contact = "robert@lmn.ro";
+		$this->url ="http://www.mantisbt.org/wiki/doku.php/mantisbt:inlinecolumnconfiguration";
 		
 		$this->scripts = array(
 			'view_all_bug_page.php',
 		);
-    }
+	}
 
 	#Check for conditions when this plugin is allowed to hook
 	function check_page() {
 		return auth_is_user_authenticated() && !current_user_is_protected() &&  in_array( basename( $_SERVER['SCRIPT_NAME'] ), $this->scripts );
 	}	
 	
-    public function hooks() {
+	public function hooks() {
 		$h = array(
 			'EVENT_MENU_FILTER' => 'add_configure_columns_link',
 			'EVENT_LAYOUT_RESOURCES' => 'resources',
 			'EVENT_LAYOUT_BODY_END' => 'add_columns_dialog'
 		);
 		return $h;
-    }
-    
-    public function resources( $p_event ) {
+	}
+
+	public function resources( $p_event ) {
 		if( $this->check_page() ) {
 			return '<script type="text/javascript" src="' . plugin_file( 'inline-column-configuration.js' ) . '"></script>'
 				 . '<link rel="stylesheet" type="text/css" href="'. plugin_file( 'inline-column-configuration.css' ) .'"/>';
 		}
-    }    
-    
-    public function add_configure_columns_link() {
+	}
+
+	public function add_configure_columns_link() {
 		if( !$this->check_page() ) {
 			return;
 		}
@@ -75,10 +75,10 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 		$t_link = '<a href="account_manage_columns_page.php" data-remote="' . $t_url . '" class="columns_form_trigger">'
 				. plugin_lang_get( 'configure_columns' )
 				. '</a>';
-        return $t_link;
-    }
-    
-    public function add_columns_dialog() {
+		return $t_link;
+	}
+
+	public function add_columns_dialog() {
 		if( !$this->check_page() ) {
 			return;
 		}
@@ -86,8 +86,8 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 		?>
 		<div id="column_config_dialog" class="dialog" title="<?php echo $t_title ?>">
 		<?php echo plugin_lang_get( 'please_wait' ) ?>
-		</div>		
-        <?php 		
-    }
+		</div>
+		<?php
+	}
 	
 }

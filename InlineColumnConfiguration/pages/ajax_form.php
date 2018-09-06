@@ -88,15 +88,15 @@ $g_project_override = $f_project_id;
 		</div>
 
 		<div id="tab2" class="columns_form_container">
-			<?php print_columns_inputs_by_target( COLUMNS_TARGET_PRINT_PAGE ) ?>	
+			<?php print_columns_inputs_by_target( COLUMNS_TARGET_PRINT_PAGE ) ?>
 		</div>
 
 		<div id="tab3" class="columns_form_container">
-			<?php print_columns_inputs_by_target( COLUMNS_TARGET_CSV_PAGE ) ?>		
+			<?php print_columns_inputs_by_target( COLUMNS_TARGET_CSV_PAGE ) ?>
 		</div>
 
 		<div id="tab4" class="columns_form_container">
-			<?php print_columns_inputs_by_target( COLUMNS_TARGET_EXCEL_PAGE ) ?>		
+			<?php print_columns_inputs_by_target( COLUMNS_TARGET_EXCEL_PAGE ) ?>
 		</div>
 
 	</div>
