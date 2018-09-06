@@ -8,6 +8,21 @@ specification.
 
 --------------------------------------------------------------------------------
 
+## [2.0.0] - 2018-09-06
+
+### Added
+
+- MantisBT 2.x compatibility
+
+### Changed
+
+- Moved source code to root
+
+### Removed
+
+- Support for MantisBT 1.x
+
+
 ## [1.2.0] - 2018-09-06
 
 ### Added
@@ -53,8 +68,9 @@ specification.
 - Initial release
 
 
-[Unreleased]: https://github.com/mantisbt-plugins/InlineColumnConfiguration/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/mantisbt-plugins/InlineColumnConfiguration/compare/v2.0.0...HEAD
 
+[2.0.0]: https://github.com/mantisbt-plugins/InlineColumnConfiguration/compare/v1.2.0...v2.0.0
 [1.2.0]: https://github.com/mantisbt-plugins/InlineColumnConfiguration/compare/v1.1...v1.2.0
 [1.1.0]: https://github.com/mantisbt-plugins/InlineColumnConfiguration/compare/v1.0.1...v1.1
 [1.0.1]: https://github.com/mantisbt-plugins/InlineColumnConfiguration/compare/v1.0...v1.0.1
