@@ -21,7 +21,7 @@ class InlineColumnConfigurationPlugin extends MantisPlugin {
 		$this->name = plugin_lang_get("title");
 		$this->description = plugin_lang_get("description");
 
-		$this->version = "1.1";
+		$this->version = "1.2.0";
 
 		if( version_compare( MANTIS_VERSION, '1.3', '<') ) {
 			# this is version 1.2.x
