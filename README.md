@@ -45,10 +45,17 @@ If you are running MantisBT 1.x, please use
 ## Usage
 
 The plugin adds a *Configure columns* menu item to the View issues page.
+![Configure Column button](doc/usage_1_config_columns_button.png)
 
 When clicked, a configuration pop-up dialog opens, allowing users to select
-which fields to display for _View_, _Print_, _CSV_ and _Excel_ columns, as well
-as drag and drop them to control the order in which they are displayed.
+which fields to display for _View_, _Print_, _CSV_ and _Excel_ columns. 
+![Manage Columns dialog](doc/usage_2_manage_columns_dialog.png)
+
+Drag and drop columns to control the order in which they are displayed.
+![Drag and drop](doc/usage_3_reorder_columns_dragdrop.png)
+
+Click on the _Update Configuration_ button to save changes.
+![Update Configuration](doc/usage_4_update_configuration.png)
 
 
 ## Support
